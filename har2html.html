@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <style>
+      body {
+        grid-template-columns: 1fr min(98%, 98%) 1fr !important;
+      }
+      .group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="header">HAR 2 HTML</h1>
+    <div class="group">
+      <input type="file" id="file-selector" accept=".har" />
+      <button id="download_html_btn" hidden>Download HTML</button>
+    </div>
+    <pre id="url_list" hidden><code></code></pre>
+    <iframe id="har_html_iframe" sandbox="allow-forms allow-scripts"></iframe>
+    <script src="./har2html.js" defer></script>
+  </body>
+</html>
