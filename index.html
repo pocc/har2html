@@ -58,13 +58,13 @@
     </style>
   </head>
   <body>
-    <h2 id="header">Tools</h2>
+    <h2 class="small" id="header">Tools</h2>
     <p>These are projects I have built that serve a purpose.</p>
     <div class="checkbox">
       <input id="wants_images" type="checkbox">
       <label for="wants_images">I want images</label>
     </div>
-    <h3>2023</h3>
+    <h3 class="small">2023</h3>
     <div class="gallery">
       <div class="project">
         <a class="project_link" href="/har2html">HAR 2 HTML</a>
@@ -72,7 +72,7 @@
         <img class="hidden" src="media/har2html.png" alt="Hacker News HAR file reassembled as HTML" width="300" height="200">
       </div>
     </div>
-    <h3>2020</h3>
+    <h3 class="small">2020</h3>
     <div class="gallery">
       <div class="project">
         <a class="project_link" href="https://github.com/pocc/pre-commit-hooks">C/C++ Pre-Commit Hooks</a>
@@ -90,7 +90,7 @@
         <img class="hidden" src="media/bulk_delete_notion_pages.png" alt="Delete all files in your trash with one click" width="300" height="200">
       </div>
     </div>
-    <h3>Misc</h3>
+    <h3 class="small">Misc</h3>
     <div class="gallery">
       <div class="project">
         <a class="project_link" href="https://time.ross.gg">Emoji Time</a>
@@ -125,7 +125,6 @@
       }
 
       addClassToTag('p', 'display_inline');
-      addClassToTag('h3', 'small');
       wants_images.addEventListener('click', (e) => {
         let wants_images_label = wants_images.nextElementSibling;
         if (wants_images.checked) {
