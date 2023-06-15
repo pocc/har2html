@@ -5,6 +5,7 @@
     <style>
       body {
         grid-template-columns: 1fr min(75%, 75%) 1fr !important;
+        margin-bottom: 2em;
       }
       a.project_link {+ p:before {
         content: ': '
@@ -18,7 +19,7 @@
       p {
         margin: 0;
       }
-      h1, h3 {
+      h2, h3 {
         margin-top: 1em;
         margin-bottom: 0.25em;
       }
@@ -39,6 +40,9 @@
       img {
         transition:transform 0.5s ease;
       }
+      .small {
+        font-size: 1.2rem !important;
+      }
       .hidden {
         display:none;
       }
@@ -54,7 +58,7 @@
     </style>
   </head>
   <body>
-    <h1 id="header">Tools</h1>
+    <h2 id="header">Tools</h2>
     <p>These are projects I have built that serve a purpose.</p>
     <div class="checkbox">
       <input id="wants_images" type="checkbox">
@@ -121,6 +125,7 @@
       }
 
       addClassToTag('p', 'display_inline');
+      addClassToTag('h3', 'small');
       wants_images.addEventListener('click', (e) => {
         let wants_images_label = wants_images.nextElementSibling;
         if (wants_images.checked) {
@@ -129,6 +134,7 @@
           changeClass('project', 'image_project');
           changeClass('project_link', 'image_project_link');
           addClassToTag('img', 'hidden');
+          addClassToTag('h3', 'small');
           deleteClassFromTag('p', 'display_inline');
         } else {
           wants_images_label.textContent = 'I want images';
@@ -136,6 +142,7 @@
           changeClass('image_project', 'project');
           changeClass('image_project_link', 'project_link');
           deleteClassFromTag('img', 'hidden');
+          deleteClassFromTag('h3', 'small');
           addClassToTag('p', 'display_inline');
         }
       })
