@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="simplecss.min.css" />
+    <style>
+        video {
+            margin: 1em;
+        }
+    </style>
+  </head>
+  <body>
+    <h1 id="empty-notion-trash">Empty Notion Trash</h1>
+    <p>
+      <a href="https://github.com/pocc/bulk_delete_notion_pages">Source repo</a>
+    </p>
+    <ul>
+      <li>
+        <strong>To Install</strong>: Drag and drop this link<a
+          id="bookmarklet"
+          class="bookmarklet"
+          href="javascript%3A%21function%28%29%7Basync%20function%20e%28%29%7Breturn%20Object.keys%28%28json%3Dawait%20%28resp%3Dawait%20fetch%28%22https%3A%2F%2Fwww.notion.so%2Fapi%2Fv3%2FloadUserContent%22%2C%7Bcredentials%3A%22include%22%2Cheaders%3A%7Baccept%3A%22%2A%2F%2A%22%2C%22cache-control%22%3A%22no-cache%22%2C%22content-type%22%3A%22application%2Fjson%22%2Cpragma%3A%22no-cache%22%2C%22sec-fetch-mode%22%3A%22cors%22%2C%22sec-fetch-site%22%3A%22same-origin%22%7D%2CreferrerPolicy%3A%22same-origin%22%2Cbody%3A%22%7B%7D%22%2Cmethod%3A%22POST%22%2Cmode%3A%22cors%22%7D%29%29.json%28%29%29.recordMap.space%29%5B0%5D%7Dasync%20function%20c%28e%29%7Breturn%20blockIds%3D%28json%3Dawait%20%28await%20fetch%28%22https%3A%2F%2Fwww.notion.so%2Fapi%2Fv3%2Fsearch%22%2C%7Bheaders%3A%7Baccept%3A%22%2A%2F%2A%22%2C%22accept-language%22%3A%22en-US%2Cen%3Bq%3D0.9%22%2C%22cache-control%22%3A%22no-cache%22%2C%22content-type%22%3A%22application%2Fjson%22%7D%2Cbody%3A%60%7B%22type%22%3A%22BlocksInSpace%22%2C%22spaceId%22%3A%22%24%7Be%7D%22%2C%22limit%22%3A1000%2C%22filters%22%3A%7B%22isDeletedOnly%22%3Atrue%2C%22excludeTemplates%22%3Afalse%2C%22navigableBlockContentOnly%22%3Afalse%2C%22requireEditPermissions%22%3Afalse%2C%22includePublicPagesWithoutExplicitAccess%22%3Afalse%2C%22ancestors%22%3A%5B%5D%2C%22createdBy%22%3A%5B%5D%2C%22editedBy%22%3A%5B%5D%2C%22lastEditedTime%22%3A%7B%7D%2C%22createdTime%22%3A%7B%7D%2C%22inTeams%22%3A%5B%5D%7D%2C%22sort%22%3A%7B%22field%22%3A%22relevance%22%7D%2C%22source%22%3A%22quick_find_input_change%22%2C%22searchExperimentOverrides%22%3A%7B%7D%7D%60%2Cmethod%3A%22POST%22%2Cmode%3A%22cors%22%2Ccredentials%3A%22include%22%7D%29%29.json%28%29%29.results.map%28e%3D%3Ee.id%29%7D%28async%28%29%3D%3E%7Blet%20t%3Dawait%20e%28%29%3Bfor%28let%20a%20of%20blockIds%3Dawait%20c%28t%29%29await%20fetch%28%22https%3A%2F%2Fwww.notion.so%2Fapi%2Fv3%2FdeleteBlocks%22%2C%7Bheaders%3A%7Baccept%3A%22%2A%2F%2A%22%2C%22accept-language%22%3A%22en-US%2Cen%3Bq%3D0.9%22%2C%22cache-control%22%3A%22no-cache%22%2C%22content-type%22%3A%22application%2Fjson%22%7D%2Creferrer%3A%22https%3A%2F%2Fwww.notion.so%2Fqwerk%2FLorem-Ipsum-d883cc4e6ea64bd4bcdb85c43cf74946%22%2CreferrerPolicy%3A%22strict-origin-when-cross-origin%22%2Cbody%3A%60%7B%22blocks%22%3A%5B%7B%22id%22%3A%22%24%7Ba%7D%22%2C%22spaceId%22%3A%22%24%7Bt%7D%22%7D%5D%2C%22permanentlyDelete%22%3Atrue%7D%60%2Cmethod%3A%22POST%22%2Cmode%3A%22cors%22%2Ccredentials%3A%22include%22%7D%29%7D%29%28%29%7D%28%29%3B"
+        >
+          Empty Notion Trash</a
+        >
+        to your Bookmarks Bar
+      </li>
+      <li>
+        <strong>To Use</strong>: Click on the bookmark when you are on notion.so
+      </li>
+      <video controls width="800">
+        <source src="media/bulk_delete_notion_pages.webm" type="video/webm" />
+        Download the
+        <a href="media/bulk_delete_notion_pages.webm">WEBM</a>
+        video.
+      </video>
+    </ul>
+    <script>
+      // Replace the URIEncoded '%3A' to ':' after javascript so browsers treat this as a bookmarklet
+      // Also removes domain that's added for some reason
+      let bookmarklet = document.getElementById("bookmarklet");
+      bookmarklet.href = bookmarklet.href.replace(
+        /^.*?javascript%3A/,
+        "javascript:"
+      );
+    </script>
+  </body>
+</html>
