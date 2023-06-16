@@ -16,16 +16,25 @@
         flex-direction: column;
         justify-content: center;
       }
+      li {
+        padding: 10px 0 10px 0;
+      }
     </style>
   </head>
   <body>
-    <h1 id="header">HAR 2 HTML</h1>
+    <h1 id="header"><a href="index.html">Tools</a>&nbsp;>&nbsp;HAR To HTML</h1>
+    <ul id="help_info" hidden>
+      <li><strong>To Use</strong>: Choose a <a href="https://toolbox.googleapps.com/apps/har_analyzer/">HAR file</a> to convert to HTML.</li>
+      <li><strong>How</strong>: This page takes the text payload of responses and adds them to a single HTML file. This HTML file is then inserted it into an iframe and can be downloaded.</li>
+      <li><strong>Why</strong>: I troubleshoot technical issues at Cloudflare and work with HAR files frequently. A loaded HTML page can visually provide more context to an issue than just the HAR file.</li>
+    </ul>
     <div class="group">
-      <input type="file" id="fileSelector" accept=".har" />
+      <button id="help_btn" title="Information to help you understand how to use this tool">Help</button>
+      <input type="file" id="fileSelector" accept=".har" title="Click here to add your HAR file" />
       <button id="download_html_btn" hidden>Download HTML</button>
     </div>
     <pre id="url_list" hidden><code></code></pre>
-    <iframe id="har_html_iframe" sandbox="allow-forms allow-scripts"></iframe>
+    <iframe id="har_html_iframe" sandbox="allow-forms allow-scripts" title="iframe that will contain the HTML of the HAR file"></iframe>
     <script src="./har2html.js" defer></script>
     <script src="./har_analyzer__en.js" defer></script>
   </body>

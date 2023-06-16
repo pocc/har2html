@@ -1,3 +1,6 @@
+document.getElementById('help_btn').addEventListener('click', () => {
+  document.getElementById('help_info').hidden = false;
+});
 const fileSelector = document.getElementById("fileSelector");
 fileSelector.addEventListener("change", (event) => {
   let [file] = event.target.files;
@@ -103,6 +106,7 @@ fileSelector.addEventListener("change", (event) => {
         replace_text = "<" + "script" + ">" + iframe_js + "</" + "script" + "></" + "body>";
         iframe_html = iframe_html.replace("</" + "body" + ">", replace_text);
         iframe.srcdoc = iframe_html;
+        iframe.title = "HTML for " + base_url + " based on " + file.name;
         // resize iframe height dynamically
         iframe.onload = () => {
           iframe.style.height = avail_height + "px";
