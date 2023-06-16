@@ -1,4 +1,4 @@
-const fileSelector = document.getElementById("file-selector");
+const fileSelector = document.getElementById("fileSelector");
 fileSelector.addEventListener("change", (event) => {
   let [file] = event.target.files;
   document.getElementById("download_html_btn").hidden = true;
@@ -13,8 +13,8 @@ fileSelector.addEventListener("change", (event) => {
         let avail_height =
           screen.availHeight -
           100 -
-          document.getElementById("file-selector").clientHeight -
-          document.getElementById("file-selector").clientHeight;
+          document.getElementById("fileSelector").clientHeight -
+          document.getElementById("fileSelector").clientHeight;
         let reader_text = reader.result;
         let reader_json = JSON.parse(reader_text);
         let url_coverage = [];
@@ -53,7 +53,6 @@ fileSelector.addEventListener("change", (event) => {
           } else {
             covered = false;
           }
-          console.log(url_coverage);
           url_coverage.push(
             (covered ? "✅" : "❌") +
               " " +
@@ -64,6 +63,7 @@ fileSelector.addEventListener("change", (event) => {
               url
           );
         }
+        console.log("URL coverage:", url_coverage);
         if (iframe_html === "") {
           alert(
             "No text/html request found. Make sure your HAR file is valid."

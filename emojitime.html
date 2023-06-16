@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      table,
+      .chkboxes,
+      span {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      table {
+        font-size: 24px;
+      }
+      #header {
+        font-size: 48px;
+      }
+      #emojis {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 96px;
+      }
+      #legend_options {
+        display: grid;
+      }
+      .initially_hidden,
+      #animoji_date {
+        display: none;
+      }
+      label {
+        font-size: 16px;
+      }
+      #animoji_date {
+        margin-left: 3%;
+        margin-right: 3%;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="header">Emoji Time</p>
+    <div id="emojis">
+      <div id="animoji_date"></div>
+      <div id="animoji_time"></div>
+    </div>
+    <br /><br /><br /><br />
+    <div id="legend_options" class="center">
+      <div class="chkboxes">
+        <input type="checkbox" id="more_info" name="more_info" />
+        <label for="more_info">More Info</label>
+      </div>
+      <div class="chkboxes" id="show_food_chkbox" hidden>
+        <input type="checkbox" id="show_food" name="show_food" />
+        <label for="show_food">🍪 nom nom nom</label>
+      </div>
+    </div>
+    <br /><br />
+    <table id="emoji_table" hidden>
+      <thead></thead>
+      <tbody></tbody>
+    </table>
+    <br /><br />
+    <span id="note" hidden
+      >Uses&nbsp;<a href="https://unicode.org/versions/Unicode15.0.0/"
+        >Unicode 15.0.0</a
+      >&nbsp;(2022)</span
+    >
+    <script src="emojitime.js" defer>
+    </script>
+  </body>
+</html>
