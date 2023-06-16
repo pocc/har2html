@@ -96,11 +96,12 @@ fileSelector.addEventListener("change", (event) => {
             'url("' + img_datum + '")'
           );
         }
-        let replace_text = "<style>" + iframe_css + "</style></head>";
-        iframe_html = iframe_html.replace("</head>", replace_text);
+        // Break up tags so that HTML doesn't parse it as HTML
+        let replace_text = "<" + "style" + ">" + iframe_css + "</" + "style" + "></" + "head" + ">";
+        iframe_html = iframe_html.replace("</" + "head>", replace_text);
         // Run JS at end of document
-        replace_text = "<script>" + iframe_js + "</script></body>";
-        iframe_html = iframe_html.replace("</body>", replace_text);
+        replace_text = "<" + "script" + ">" + iframe_js + "</" + "script" + "></" + "body>";
+        iframe_html = iframe_html.replace("</" + "body" + ">", replace_text);
         iframe.srcdoc = iframe_html;
         // resize iframe height dynamically
         iframe.onload = () => {
