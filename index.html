@@ -2,11 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="simplecss.min.css" />
+    <link rel="stylesheet" href="shared.css" />
     <style>
-      body {
-        grid-template-columns: 1fr min(75%, 75%) 1fr !important;
-        margin-bottom: 2em;
-      }
       a.project_link {+ p:before {
         content: ': '
       } }
@@ -19,7 +16,7 @@
       p {
         margin: 0;
       }
-      h2, h3 {
+      h3 {
         margin-top: 1em;
         margin-bottom: 0.25em;
       }
@@ -57,15 +54,22 @@
       .checkbox {
         display: inline-block;
       }
+      span {
+        padding: 0 0 10px 0;
+      }
+      .tools_text_list {
+        padding: 10px 0 0 20px;
+      }
     </style>
   </head>
   <body>
-    <h2 id="header">Tools</h2>
-    <p>These are projects I have built that serve a purpose.</p>
+    <h1 id="header">Tools</h1>
+    <span>These are projects I have built that serve a purpose.</span>
     <div class="checkbox">
       <input id="wants_images" type="checkbox">
-      <label for="wants_images">I want images</label>
+      <label for="wants_images">Images</label>
     </div>
+    <div id="tools" class="tools_text_list">
     <h3 class="small">2023</h3>
     <div class="gallery">
       <div class="project">
@@ -110,6 +114,7 @@
         <img class="hidden" src="media/bga_bosspiles.png" alt="Cheery Dog wins the async game of Can't Stop and goes up in the ladder" title="Cheery Dog wins the async game of Can't Stop and goes up in the ladder" width="300" height="200">
       </div>
     </div>
+    </div>
     <script>
       // Make checkbox change CSS
       let wants_images = document.getElementById('wants_images');
@@ -129,21 +134,21 @@
       wants_images.addEventListener('click', (e) => {
         let wants_images_label = wants_images.nextElementSibling;
         if (wants_images.checked) {
-          wants_images_label.textContent = 'I want text';
           changeClass('gallery', 'image_gallery');
           changeClass('project', 'image_project');
           changeClass('project_link', 'image_project_link');
           addClassToTag('img', 'hidden');
           addClassToTag('h3', 'small');
           deleteClassFromTag('p', 'display_inline');
+          document.getElementById('tools').classList.remove('tools_text_list');
         } else {
-          wants_images_label.textContent = 'I want images';
           changeClass('image_gallery', 'gallery');
           changeClass('image_project', 'project');
           changeClass('image_project_link', 'project_link');
           deleteClassFromTag('img', 'hidden');
           deleteClassFromTag('h3', 'small');
           addClassToTag('p', 'display_inline');
+          document.getElementById('tools').classList.add('tools_text_list');
         }
       })
     </script>
