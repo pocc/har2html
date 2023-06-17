@@ -120,7 +120,6 @@ fileSelector.addEventListener("change", (event) => {
         let btn = document.getElementById("download_html_btn");
         function handleButton(e) {
           e.preventDefault();
-          const string = document.querySelector("#download_html_btn").value;
           const element = document.createElement("a");
           const newFile = new Blob([iframe_html], { type: "text/html" });
           element.href = URL.createObjectURL(newFile);
@@ -131,6 +130,18 @@ fileSelector.addEventListener("change", (event) => {
         }
         btn.removeEventListener("click", handleButton);
         btn.addEventListener("click", handleButton);
+        let sampleDlBtn = document.getElementById("sample_download");
+        function handleButton(e) {
+          e.preventDefault();
+          const element = document.createElement("a");
+          const newFile = new Blob([iframe_html], { type: "application/json" });
+          element.href = URL.createObjectURL(newFile);
+          element.download = 'tools.ross.gg.har';
+          document.body.appendChild(element); // Required for this to work in FireFox
+          element.click();
+        }
+        sampleDlBtn.removeEventListener("click", handleButton);
+        sampleDlBtn.addEventListener("click", handleButton);
       },
       false
     );
