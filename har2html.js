@@ -131,7 +131,7 @@ fileSelector.addEventListener("change", (event) => {
         btn.removeEventListener("click", handleButton);
         btn.addEventListener("click", handleButton);
         let sampleDlBtn = document.getElementById("sample_download");
-        function handleButton(e) {
+        function handleButtonDLSample(e) {
           e.preventDefault();
           const element = document.createElement("a");
           const newFile = new Blob([iframe_html], { type: "application/json" });
@@ -140,8 +140,8 @@ fileSelector.addEventListener("change", (event) => {
           document.body.appendChild(element); // Required for this to work in FireFox
           element.click();
         }
-        sampleDlBtn.removeEventListener("click", handleButton);
-        sampleDlBtn.addEventListener("click", handleButton);
+        sampleDlBtn.removeEventListener("click", handleButtonDLSample);
+        sampleDlBtn.addEventListener("click", handleButtonDLSample);
       },
       false
     );
