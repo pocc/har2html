@@ -12,22 +12,78 @@
       li {
         padding: 10px 0 10px 0;
       }
+      details {
+        background-color: unset;
+        border: 0px;
+      }
+      p {
+        margin: 1em 2em;
+      }
     </style>
   </head>
   <body>
     <h1 id="header"><a href="index.html">Tools</a>&nbsp;>&nbsp;HAR To HTML</h1>
-    <ul id="help_info" hidden>
-      <li><strong>To Use</strong>: Choose a <a href="https://toolbox.googleapps.com/apps/har_analyzer/">HAR file</a> to convert to HTML. You can download a <a id="sample_download" href="/media/tools.ross.gg.har" download="tools.ross.gg.har">HAR of this website loading</a>and upload it if you like recursion.</li>
-      <li><strong>How</strong>: This page takes the text payload of responses and adds them to a single HTML file. This HTML file is then inserted it into an iframe and can be downloaded.</li>
-      <li><strong>Why</strong>: I troubleshoot technical issues at Cloudflare and work with HAR files frequently. A loaded HTML page can visually provide more context to an issue than just the HAR file.</li>
-    </ul>
+    <details>
+      <summary>Help</summary>
+      <strong>To Use</strong>
+      <p>
+        Click on "Choose File" and upload a
+        <a href="https://toolbox.googleapps.com/apps/har_analyzer/">HAR file</a>
+        to convert it to HTML. You can download a
+        <a
+          id="sample_download"
+          href="/media/tools.ross.gg.har"
+          download="tools.ross.gg.har"
+          >HAR of this website loading</a
+        >
+        and upload it if you like recursion.
+      </p>
+      <strong>Options</strong>
+      <ul>
+        <li>
+          <em>Convert file</em>: Reconstitute the page only from requests in HAR
+          file. This will only load the first text/html request and requests it
+          creates.
+        </li>
+        <li>
+          <em>Realtime Replay</em>: Load HTML file and then resend all requests
+          with their headers at the timestamps in the HAR file. This should look
+          more like animation as the page will change like it did for the user
+          recording the HAR file.
+        </li>
+      </ul>
+      <strong>How</strong>
+      <p>
+        This page takes the text payload of responses and adds them to a single
+        HTML file. This HTML file is then inserted it into an iframe and can be
+        downloaded.
+      </p>
+      <strong>Why</strong>
+      <p>
+        I troubleshoot technical issues at Cloudflare and work with HAR files
+        frequently. A loaded HTML page can visually provide more context to an
+        issue than just the HAR file.
+      </p>
+    </details>
     <div class="group">
-      <button id="help_btn" title="Information to help you understand how to use this tool">Help</button>
-      <input type="file" id="fileSelector" accept=".har" title="Click here to add your HAR file" />
+      <select name="mode-select" id="mode-select">
+        <option value="convert">Convert file</option>
+        <option value="replay">Realtime Replay</option>
+      </select>
+      <input
+        type="file"
+        id="fileSelector"
+        accept=".har"
+        title="Click here to add your HAR file"
+      />
       <button id="download_html_btn" hidden>Download HTML</button>
     </div>
     <pre id="url_list" hidden><code></code></pre>
-    <iframe id="har_html_iframe" sandbox="allow-forms allow-scripts" title="iframe that will contain the HTML of the HAR file"></iframe>
+    <iframe
+      id="har_html_iframe"
+      sandbox="allow-forms allow-scripts"
+      title="iframe that will contain the HTML of the HAR file"
+    ></iframe>
     <script src="./har2html.js" defer></script>
     <script src="./har_analyzer__en.js" defer></script>
   </body>

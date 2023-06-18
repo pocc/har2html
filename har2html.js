@@ -1,6 +1,3 @@
-document.getElementById('help_btn').addEventListener('click', () => {
-  document.getElementById('help_info').hidden = !document.getElementById('help_info').hidden;
-});
 const fileSelector = document.getElementById("fileSelector");
 fileSelector.addEventListener("change", (event) => {
   let [file] = event.target.files;
