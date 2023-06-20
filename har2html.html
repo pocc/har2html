@@ -46,10 +46,13 @@
           creates.
         </li>
         <li>
-          <em>Realtime Replay</em>: Load HTML file and then resend all requests
-          with their headers at the timestamps in the HAR file. This should look
-          more like animation as the page will change like it did for the user
-          recording the HAR file.
+          <em>Realtime Replay [Not yet built]</em>: Load HTML file and then
+          resend all requests with their headers at the timestamps in the HAR
+          file. This should look more like animation as the page will change
+          like it did for the user recording the HAR file. NOTE: This is not
+          idempotent! If you created or deleted things in this HAR file,
+          replaying those requests may error, because you are trying to
+          create/delete them a second time.
         </li>
       </ul>
       <strong>How</strong>
@@ -68,7 +71,7 @@
     <div class="group">
       <select name="mode-select" id="mode-select">
         <option value="convert">Convert file</option>
-        <option value="replay">Realtime Replay</option>
+        <option value="replay">Realtime Replay [Not yet built]</option>
       </select>
       <input
         type="file"
