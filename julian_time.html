@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Day time</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      h1 {
+        font-family: "Roboto", sans-serif;
+        color: #fff;
+        margin: 0px;
+        text-align: center;
+      }
+      body {
+        margin: 0;
+        background-color: #222;
+      }
+      #time_container {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="time_container">
+      <h1 id="julian_date"></h1>
+      <h1 id="julian_time"></h1>
+    </div>
+    <script>
+      function setJDTime() {
+        const MJD2Unixepoch = 40587.0; // 1858-11-17 to 1970-01-01
+        const datetime = new Date().getTime() / 86400000 + MJD2Unixepoch;
+        const fixedDatetime =  datetime.toFixed(5);
+        const newTime = fixedDatetime.split(".");
+        document.getElementById("julian_date").innerHTML = newTime[0];
+        document.getElementById("julian_time").innerHTML = newTime[1];
+      }
+      setJDTime();
+      setInterval(setJDTime, 864);
+      // While text scrollable, decrease fontsize
+      function resizeText() {
+        let textContainer = document.getElementById("time_container"); 
+        [...textContainer.children].forEach(h1 => h1.style.fontSize = '10000%');
+        while (window.innerHeight < textContainer.scrollHeight) {
+          [...textContainer.children].forEach(h1 => h1.style.fontSize = (h1.style.fontSize.split('%')[0]-100) + '%');
+        }
+        while (window.innerWidth < textContainer.scrollWidth) {
+          [...textContainer.children].forEach(h1 => h1.style.fontSize = (h1.style.fontSize.split('%')[0]-100) + '%');
+        }
+      }
+      resizeText()
+      window.onresize = resizeText;
+    </script>
+  </body>
+</html>
