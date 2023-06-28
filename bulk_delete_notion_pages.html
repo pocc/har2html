@@ -48,6 +48,68 @@
         /^.*?javascript%3A/,
         "javascript:"
       );
+
+      function isManagedChallengeResponse(resp) {
+      // TODO this just tells us that CF was involved, not that this
+      //   is actually a managed challenge response. Additonal work is needed.
+      return resp.headers.get("cf-mitigated") === "challenge" && resp.headers.get("server") === "cloudflare" && resp.headers.get("content-type")?.includes("text/html");
+    }
+
+    let managedChallengeInProgress;
+    let origUrl = window.location.href;
+    function handleManagedChallenge() {
+      if (managedChallengeInProgress) {
+        return managedChallengeInProgress;
+      }
+      managedChallengeInProgress = new Promise((resolve, reject) => {
+        (async () => {
+
+          const f = document.createElement("iframe");
+          f.src = 'https://tools.ross.gg/managed-challenge-iframe'
+
+          Object.assign(f.style, {
+            width: "100vw",
+            height: "100vw",
+            backgroundColor: "#FFFFFFEE",
+            border: "32px solid #88888866",
+            backdropFilter: "blur(3px)",
+          });
+
+          f.addEventListener("load", () => {
+            if (f.contentDocument?.querySelector("#os_cf_verified")) {
+              document.body.removeChild(f);
+              alert("removing iframe as it has fulfilled its purpose");
+              resolve();
+            } else if (f.contentDocument?.querySelector(".cf-error-title")) {
+              document.body.removeChild(f);
+              reject("Blocked");
+            }
+          });
+
+          document.body.append(f);
+        })().catch(error => {
+          console.log('Error attempting to load managed challenge from Cloudflare');
+          reject(error.message);
+        });
+      });
+      return managedChallengeInProgress;
+    }
+
+    // custom fetch response for Apollo Client HttpLink
+    const fetchResponse = async (uri, options) => {
+        let response = await fetch(uri, options);
+
+        if (isManagedChallengeResponse(response)) {
+          await handleManagedChallenge();
+          response = await fetch(uri, options);
+        }
+        return response;
+    }
+    handleManagedChallenge();
+
+    for (let i=0; i<10; i++) {
+      fetchResponse('https://tools.ross.gg/js_jokes.json').then(resp => {console.log(resp.headers); return resp.text()}).then(text=>console.log("Response text:\n", text));
+    }
     </script>
   </body>
 </html>
